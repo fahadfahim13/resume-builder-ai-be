@@ -9,6 +9,9 @@ export class Resume {
   resumeJson: string;
 
   @Prop()
+  userPrompt: string;
+
+  @Prop()
   createdAt: string;
 
   @Prop()
