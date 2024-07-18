@@ -3,6 +3,12 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 @Schema()
 export class Resume {
   @Prop({ required: true })
+  userEmail: string;
+
+  @Prop({ required: true })
+  name: string;
+
+  @Prop()
   userId: string;
 
   @Prop()

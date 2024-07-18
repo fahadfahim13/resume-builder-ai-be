@@ -6,11 +6,11 @@ export class User {
   name: string;
 
   @Prop()
-  email: number;
+  email: string;
 
   @Prop()
   image: string;
-  
+
   @Prop()
   createdAt: string;
 

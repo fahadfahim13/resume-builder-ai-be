@@ -1,6 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Response } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Response,
+} from '@nestjs/common';
 import { AiResumesService } from './ai-resumes.service';
-import { CreateAiResumeDto } from './dto/create-ai-resume.dto';
+import { CreateAiResumeDto, FindResumeDto } from './dto/create-ai-resume.dto';
 import { UpdateAiResumeDto } from './dto/update-ai-resume.dto';
 
 @Controller('ai-resumes')
@@ -9,21 +18,26 @@ export class AiResumesController {
 
   @Post()
   create(@Body() createAiResumeDto: CreateAiResumeDto) {
+    // console.log({createAiResumeDto});
     return this.aiResumesService.create(createAiResumeDto);
+    // return createAiResumeDto;
   }
 
-  @Get()
-  findAll() {
-    return this.aiResumesService.findAll();
+  @Post('/get-all')
+  findAll(@Body() findResume: FindResumeDto) {
+    return this.aiResumesService.findAll(findResume);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.aiResumesService.findOne(+id);
+    return this.aiResumesService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAiResumeDto: UpdateAiResumeDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateAiResumeDto: UpdateAiResumeDto,
+  ) {
     return this.aiResumesService.update(+id, updateAiResumeDto);
   }
 

@@ -7,7 +7,6 @@ import { Model } from 'mongoose';
 
 @Injectable()
 export class UsersService {
-
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
@@ -21,6 +20,13 @@ export class UsersService {
 
   async findOne(id: string) {
     const user = this.userModel.findById(id);
+    return user;
+  }
+
+  async findOneByEmail(email: string) {
+    const user = this.userModel.find({
+      email: { $eq: email },
+    });
     return user;
   }
 
