@@ -1,9 +1,10 @@
 export const getPrompt = (userInput: string) => {
-    let prompt = `Description: [${userInput}]; Based on Description, give me a detailed JSON structure for a resume. 
-      This JSON will later be used to generate a pdf file for a professional resume. The JSON should include the following sections:
+  let prompt = `Description: [${userInput}]; 
+    Based on Description, give me a detailed JSON structure for a resume. 
+      This JSON will later be used to generate a pdf file for a professional resume. If there is any personal information, use those
+      in the JSON as well. The JSON should include the following sections:
   
   Introduction:
-  
   header (Your full name i.e. John Doe)
   subHeader (Your professional title i.e. Software Engineer | Programmer | Digital Marketer)
   header3 (Contact Information i.e. john.doe@yourmail.com)
@@ -29,6 +30,14 @@ export const getPrompt = (userInput: string) => {
   descriptionType (Use "paragraph")
   description (Detailed information about the projects you worked on, technologies used, achievements, and any other relevant details)
   
+  Education:
+  header (University name)
+  subHeader (Your degree)
+  header3 (Duration of degree, e.g., "June 2019 - Present")
+  smallDescription (A brief overview of your learnings)
+  descriptionType (Use "paragraph")
+  description (Detailed information about your learnings)
+
   Projects:
   header (Project name)
   subHeader (Brief description or role in the project)
@@ -63,6 +72,17 @@ export const getPrompt = (userInput: string) => {
       "descriptionType": "paragraph",
       "description": "A detailed summary of your professional background, key skills, and career objectives."
     },
+    "education": [
+      {
+        "header": "Stanford University",
+        "subHeader": "Computer Science & Engineering",
+        "header3": "June 2019 - Present (or similar format)",
+        "smallDescription": "A brief overview of your learnings.",
+        "descriptionType": "paragraph",
+        "description": "Detailed information about your projects, technologies used, achievements, etc."
+      },
+      // Add more experience objects here (same structure)
+    ],
     "skills": {
       "header": "Technical Skills",
       "descriptionType": "list",
@@ -104,7 +124,6 @@ export const getPrompt = (userInput: string) => {
       // Add more achievement objects here (same structure)
     ]
   } `;
-  
-    return prompt;
-  };
-  
+
+  return prompt;
+};
