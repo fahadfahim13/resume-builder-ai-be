@@ -1,7 +1,8 @@
 export const getPrompt = (userInput: string) => {
   let prompt = `Description: [${userInput}]; 
     Based on Description, give me a detailed JSON structure for a resume. 
-      This JSON will later be used to generate a pdf file for a professional resume. If there is any personal information, use those
+      This JSON will later be used to generate a pdf file for a professional resume. 
+      If there is any personal information, use those
       in the JSON as well. The JSON should include the following sections:
   
   Introduction:
@@ -51,7 +52,7 @@ export const getPrompt = (userInput: string) => {
   descriptionType (Use "paragraph")
   description (Details about the achievement, including the context, significance, and any relevant dates)
   
-  
+  Must provide 1 or 2 elements in projects, achievements, education, experiences, and skills.
   Example JSON Structure:
   {
     "introduction": {
