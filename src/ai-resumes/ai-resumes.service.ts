@@ -73,8 +73,25 @@ export class AiResumesService {
     return this.resumeModel.findById(id);
   }
 
-  update(id: number, updateAiResumeDto: UpdateAiResumeDto) {
-    return `This action updates a #${id} aiResume`;
+  async update(updateAiResumeDto: UpdateAiResumeDto) {
+    const res = await this.resumeModel.updateOne(
+      {
+        _id: {
+          $eq: updateAiResumeDto._id,
+        },
+      },
+      {
+        $set: {
+          resumeJson: updateAiResumeDto.resumeJson,
+          updatedAt: new Date().toUTCString(),
+        },
+      },
+      { upsert: true },
+    );
+    console.log(res.acknowledged);
+    console.log(res.modifiedCount);
+    console.log(res.upsertedId);
+    return res;
   }
 
   remove(id: number) {

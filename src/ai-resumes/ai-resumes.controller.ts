@@ -33,12 +33,9 @@ export class AiResumesController {
     return this.aiResumesService.findOne(id);
   }
 
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateAiResumeDto: UpdateAiResumeDto,
-  ) {
-    return this.aiResumesService.update(+id, updateAiResumeDto);
+  @Post('/save')
+  update(@Body() updateAiResumeDto: UpdateAiResumeDto) {
+    return this.aiResumesService.update(updateAiResumeDto);
   }
 
   @Delete(':id')
