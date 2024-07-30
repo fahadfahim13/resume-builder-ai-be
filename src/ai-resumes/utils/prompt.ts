@@ -128,3 +128,10 @@ export const getPrompt = (userInput: string) => {
 
   return prompt;
 };
+
+export const getDescriptionPrompt = (input: string) => `Input: [${input}].
+Based on input, give me a professional description of my experience with simple details. 
+Description should be professional, simple and not more than 300 words.
+Give the description in a JSON like below:
+{ description: "Some description based on input..." }
+`;

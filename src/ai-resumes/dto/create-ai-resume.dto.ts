@@ -9,3 +9,7 @@ export class CreateAiResumeDto {
 export class FindResumeDto {
   userEmail: string;
 }
+
+export class GenerateDescDto extends FindResumeDto {
+  userInput: string;
+}

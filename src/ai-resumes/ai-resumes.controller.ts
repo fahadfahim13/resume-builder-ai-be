@@ -9,8 +9,13 @@ import {
   Response,
 } from '@nestjs/common';
 import { AiResumesService } from './ai-resumes.service';
-import { CreateAiResumeDto, FindResumeDto } from './dto/create-ai-resume.dto';
+import {
+  CreateAiResumeDto,
+  FindResumeDto,
+  GenerateDescDto,
+} from './dto/create-ai-resume.dto';
 import { UpdateAiResumeDto } from './dto/update-ai-resume.dto';
+import { GetAiResumeDetailsDto } from './dto/get-ai-resume.dto';
 
 @Controller('ai-resumes')
 export class AiResumesController {
@@ -28,9 +33,14 @@ export class AiResumesController {
     return this.aiResumesService.findAll(findResume);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.aiResumesService.findOne(id);
+  @Post('/generate-desc')
+  generateDescription(@Body() generateDescriptionDto: GenerateDescDto) {
+    return this.aiResumesService.getDescription(generateDescriptionDto);
+  }
+
+  @Post('/get-details')
+  findOne(@Body() getAiResumeDto: GetAiResumeDetailsDto) {
+    return this.aiResumesService.findOne(getAiResumeDto);
   }
 
   @Post('/save')
