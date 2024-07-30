@@ -82,6 +82,7 @@ export class AiResumesService {
       },
       {
         $set: {
+          name: updateAiResumeDto.name,
           resumeJson: updateAiResumeDto.resumeJson,
           updatedAt: new Date().toUTCString(),
         },
@@ -94,7 +95,14 @@ export class AiResumesService {
     return res;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} aiResume`;
+  async remove(id: string) {
+    const res = await this.resumeModel.deleteOne({
+      _id: {
+        $eq: id,
+      },
+    });
+    console.log(res.acknowledged);
+    console.log(res.deletedCount);
+    return res;
   }
 }

@@ -40,6 +40,6 @@ export class AiResumesController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.aiResumesService.remove(+id);
+    return this.aiResumesService.remove(id);
   }
 }
